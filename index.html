@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eficiência</title>
+    
+    <!-- PWA Primary Meta Tags -->
+    <meta name="theme-color" content="#1b4332">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Eficiência">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231b4332%22/><text y=%22.9em%22 font-size=%2280%22 x=%225%22>⚜️</text></svg>">
+    <link rel="manifest" href="manifest.json">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1b15;
+            color: #e2e8f0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .rpg-font {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.02em;
+        }
+        .bg-forest-dark { background-color: #0d1b15; }
+        .bg-forest-green { background-color: #1b4332; }
+        .text-gold { color: #ffb703; }
+        .border-gold { border-color: #ffb703; }
+        .progress-green { background: linear-gradient(90deg, #2d6a4f 0%, #52b788 100%); }
+        .progress-blue { background: linear-gradient(90deg, #1d4ed8 0%, #60a5fa 100%); }
+        .progress-gold { background: linear-gradient(90deg, #b45309 0%, #fbbf24 100%); }
+        
+        .rpg-panel {
+            border: 2px solid #2d3a35;
+            position: relative;
+            background: #162a21;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .rpg-panel::before {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px; right: 2px; bottom: 2px;
+            border: 1px solid rgba(255, 183, 3, 0.1);
+            pointer-events: none;
+        }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0d1b15; }
+        ::-webkit-scrollbar-thumb { background: #1b4332; border-radius: 10px; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            dark: '#0d1b15',
+                            green: '#1b4332',
+                        },
+                        gold: '#ffb703',
+                        slate: '#334155',
+                    }
+                }
+            }
+        }
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "html2canvas": "https://esm.sh/html2canvas@^1.4.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').then(registration => {
+            console.log('SW registered: ', registration);
+          }).catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+        });
+      }
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
