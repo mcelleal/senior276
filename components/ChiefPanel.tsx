@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo } from 'react';
-import { Patrol, AttributeType, GameType, TroopName } from '../types';
+import { Patrol, AttributeType, GameType } from '../types';
 import { GAME_XP_REWARDS } from '../constants';
 import { Swords, Star, Zap, Heart, X, MessageSquare, Wrench, Compass, Smile, Info, BookOpen, CheckCircle2, ShieldAlert, Link2 } from 'lucide-react';
 
@@ -30,14 +30,7 @@ const ChiefPanel: React.FC<ChiefPanelProps> = ({ patrols, onAddXP }) => {
   const [userComment, setUserComment] = useState('');
   const [selectedPatrolId, setSelectedPatrolId] = useState<string>('');
 
-  // Helpers para formatação de exibição
-  const getShortTroopName = (troop: TroopName) => {
-    if (troop === TroopName.TARSILLA) return 'Tarsilla';
-    if (troop === TroopName.ZUMBI) return 'Zumbi';
-    return troop;
-  };
-
-  // Memoizar e ordenar patrulhas por tropa e nome
+  // Memoizar e ordenar patrulhas por nome
   const sortedPatrols = useMemo(() => {
     return [...patrols].sort((a, b) => {
       if (a.troop !== b.troop) return a.troop.localeCompare(b.troop);
@@ -141,58 +134,28 @@ const ChiefPanel: React.FC<ChiefPanelProps> = ({ patrols, onAddXP }) => {
           </div>
 
           <div className="space-y-6 border-t border-white/5 pt-6">
-            <div className="flex gap-4">
-              {/* Coluna Tarsilla */}
-              <div className="flex-1 space-y-3">
-                <h5 className="text-[10px] font-black text-gold/80 uppercase tracking-widest border-b border-gold/20 pb-1 mb-2">Tarsilla</h5>
-                {sortedPatrols.filter(p => p.troop === TroopName.TARSILLA).map(p => (
-                  <div key={p.id} className="flex items-center justify-between bg-black/20 p-2 rounded-lg border border-white/5">
-                    <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">{p.name}</span>
-                    <div className="flex gap-1">
-                      {[1, 2, 3].map(rank => (
-                        <button
-                          key={rank}
-                          onClick={() => handleToggleRank(rank as 1|2|3, p.id)}
-                          className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${
-                            (rank === 1 && rank1.includes(p.id)) ? 'bg-gold text-forest-dark ring-2 ring-gold/50' :
-                            (rank === 2 && rank2.includes(p.id)) ? 'bg-[#cccccc] text-forest-dark ring-2 ring-[#cccccc]/50' :
-                            (rank === 3 && rank3.includes(p.id)) ? 'bg-amber-600 text-forest-dark ring-2 ring-amber-600/50' :
-                            'bg-forest-dark border border-slate-700 text-slate-500 hover:border-slate-500'
-                          }`}
-                        >
-                          {rank}
-                        </button>
-                      ))}
-                    </div>
+            <div className="space-y-3">
+              {sortedPatrols.map(p => (
+                <div key={p.id} className="flex items-center justify-between bg-black/20 p-2 rounded-lg border border-white/5">
+                  <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">{p.name}</span>
+                  <div className="flex gap-1">
+                    {[1, 2, 3].map(rank => (
+                      <button
+                        key={rank}
+                        onClick={() => handleToggleRank(rank as 1|2|3, p.id)}
+                        className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${
+                          (rank === 1 && rank1.includes(p.id)) ? 'bg-gold text-forest-dark ring-2 ring-gold/50' :
+                          (rank === 2 && rank2.includes(p.id)) ? 'bg-[#cccccc] text-forest-dark ring-2 ring-[#cccccc]/50' :
+                          (rank === 3 && rank3.includes(p.id)) ? 'bg-amber-600 text-forest-dark ring-2 ring-amber-600/50' :
+                          'bg-forest-dark border border-slate-700 text-slate-500 hover:border-slate-500'
+                        }`}
+                      >
+                        {rank}
+                      </button>
+                    ))}
                   </div>
-                ))}
-              </div>
-
-              {/* Coluna Zumbi */}
-              <div className="flex-1 space-y-3">
-                <h5 className="text-[10px] font-black text-gold/80 uppercase tracking-widest border-b border-gold/20 pb-1 mb-2">Zumbi</h5>
-                {sortedPatrols.filter(p => p.troop === TroopName.ZUMBI).map(p => (
-                  <div key={p.id} className="flex items-center justify-between bg-black/20 p-2 rounded-lg border border-white/5">
-                    <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">{p.name}</span>
-                    <div className="flex gap-1">
-                      {[1, 2, 3].map(rank => (
-                        <button
-                          key={rank}
-                          onClick={() => handleToggleRank(rank as 1|2|3, p.id)}
-                          className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${
-                            (rank === 1 && rank1.includes(p.id)) ? 'bg-gold text-forest-dark ring-2 ring-gold/50' :
-                            (rank === 2 && rank2.includes(p.id)) ? 'bg-[#cccccc] text-forest-dark ring-2 ring-[#cccccc]/50' :
-                            (rank === 3 && rank3.includes(p.id)) ? 'bg-amber-600 text-forest-dark ring-2 ring-amber-600/50' :
-                            'bg-forest-dark border border-slate-700 text-slate-500 hover:border-slate-500'
-                          }`}
-                        >
-                          {rank}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
 
             <div className="pt-3 border-t border-white/5 space-y-1.5">
@@ -344,7 +307,7 @@ const ChiefPanel: React.FC<ChiefPanelProps> = ({ patrols, onAddXP }) => {
                   <option value="">Escolher...</option>
                   {sortedPatrols.map(p => (
                     <option key={p.id} value={p.id}>
-                      {getShortTroopName(p.troop)} » {p.name}
+                      {p.name}
                     </option>
                   ))}
                 </select>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Patrol, AttributeType, PatrolName } from '../types';
 import { XP_PER_LEVEL } from '../constants';
-import { PawPrint, Bird, Dog, Moon, Feather, Target, Zap, Skull, ShieldAlert, Medal, Star } from 'lucide-react';
+import { Leaf, Bird, ShieldAlert, Medal, Star } from 'lucide-react';
 
 interface PatrolCardProps {
   patrol: Patrol;
@@ -15,14 +15,8 @@ const PatrolCard: React.FC<PatrolCardProps> = ({ patrol, rank, score }) => {
 
   const getPatrolIcon = (name: PatrolName) => {
     switch (name) {
-      case 'Leão': return <PawPrint className="w-5 h-5 text-gold" />;
-      case 'Pantera': return <Skull className="w-5 h-5 text-slate-400" />;
-      case 'Tigre': return <Zap className="w-5 h-5 text-yellow-500" />;
-      case 'Raposa': return <Dog className="w-5 h-5 text-orange-500" />;
-      case 'Morcego': return <Moon className="w-5 h-5 text-purple-400" />;
-      case 'Falcão': return <Bird className="w-5 h-5 text-blue-300" />;
-      case 'Pavão': return <Feather className="w-5 h-5 text-emerald-400" />;
-      case 'Águia': return <Target className="w-5 h-5 text-red-400" />;
+      case 'Kaaete': return <Leaf className="w-5 h-5 text-emerald-400" />;
+      case 'Kuruqui': return <Bird className="w-5 h-5 text-sky-400" />;
       default: return <ShieldAlert className="w-5 h-5 text-slate-500" />;
     }
   };

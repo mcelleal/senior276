@@ -4,16 +4,9 @@ import { TroopName, PatrolName, AttributeType, Patrol } from './types';
 export const XP_PER_LEVEL = 1000;
 
 export const INITIAL_PATROLS: Patrol[] = [
-  // Tarsilla do Amaral
-  { id: 't1', name: 'Leão', troop: TroopName.TARSILLA, attributes: createInitialAttributes() },
-  { id: 't2', name: 'Pantera', troop: TroopName.TARSILLA, attributes: createInitialAttributes() },
-  { id: 't3', name: 'Tigre', troop: TroopName.TARSILLA, attributes: createInitialAttributes() },
-  { id: 't4', name: 'Raposa', troop: TroopName.TARSILLA, attributes: createInitialAttributes() },
-  // Zumbi dos Palmares
-  { id: 'z1', name: 'Morcego', troop: TroopName.ZUMBI, attributes: createInitialAttributes() },
-  { id: 'z2', name: 'Falcão', troop: TroopName.ZUMBI, attributes: createInitialAttributes() },
-  { id: 'z3', name: 'Pavão', troop: TroopName.ZUMBI, attributes: createInitialAttributes() },
-  { id: 'z4', name: 'Águia', troop: TroopName.ZUMBI, attributes: createInitialAttributes() },
+  // Cataratas do Iguaçu
+  { id: 's1', name: 'Kaaete', troop: TroopName.CATARATAS, attributes: createInitialAttributes() },
+  { id: 's2', name: 'Kuruqui', troop: TroopName.CATARATAS, attributes: createInitialAttributes() },
 ];
 
 function createInitialAttributes() {

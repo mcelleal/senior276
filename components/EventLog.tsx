@@ -85,78 +85,35 @@ const EventLog: React.FC<EventLogProps> = ({ logs, fullPage, onDeleteLog }) => {
                     </div>
                   </div>
 
-                  <div className="space-y-4 mb-4">
-                    {/* Tropa Tarsilla */}
-                    {item.filter(entry => ['Leão', 'Pantera', 'Tigre', 'Raposa'].includes(entry.patrolName)).length > 0 && (
-                      <div className="space-y-2">
-                        <h4 className="text-[10px] font-black text-gold/80 uppercase tracking-widest border-b border-gold/20 pb-1">Tarsilla</h4>
-                        {item
-                          .filter(entry => ['Leão', 'Pantera', 'Tigre', 'Raposa'].includes(entry.patrolName))
-                          .sort((a, b) => {
-                            const getRank = (desc: string) => {
-                              if (desc.includes('1º')) return 1;
-                              if (desc.includes('2º')) return 2;
-                              if (desc.includes('3º')) return 3;
-                              if (desc.includes('Fair Play')) return 4;
-                              return 5;
-                            };
-                            return getRank(a.description) - getRank(b.description);
-                          })
-                          .map(entry => (
-                          <div key={entry.id} className="flex justify-between items-center text-xs">
-                            <div className="flex items-center gap-2">
-                              {entry.description.includes('1º') && <Trophy className="w-3.5 h-3.5 text-gold" />}
-                              {entry.description.includes('2º') && <Trophy className="w-3.5 h-3.5 text-slate-300" />}
-                              {entry.description.includes('3º') && <Trophy className="w-3.5 h-3.5 text-amber-700" />}
-                              {entry.description.includes('Fair Play') && <Heart className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400/20" />}
-                              <span className="font-bold text-slate-200">{entry.patrolName}</span>
-                              <span className="text-[9px] text-slate-500 uppercase font-black tracking-tighter opacity-60">
-                                {entry.description.split(' no Jogo')[0]}
-                              </span>
-                            </div>
-                            <div className={`font-black ${entry.xpValue >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                              +{entry.xpValue} XP
-                            </div>
+                  <div className="space-y-2 mb-4">
+                    {item
+                      .sort((a, b) => {
+                        const getRank = (desc: string) => {
+                          if (desc.includes('1º')) return 1;
+                          if (desc.includes('2º')) return 2;
+                          if (desc.includes('3º')) return 3;
+                          if (desc.includes('Fair Play')) return 4;
+                          return 5;
+                        };
+                        return getRank(a.description) - getRank(b.description);
+                      })
+                      .map(entry => (
+                        <div key={entry.id} className="flex justify-between items-center text-xs">
+                          <div className="flex items-center gap-2">
+                            {entry.description.includes('1º') && <Trophy className="w-3.5 h-3.5 text-gold" />}
+                            {entry.description.includes('2º') && <Trophy className="w-3.5 h-3.5 text-slate-300" />}
+                            {entry.description.includes('3º') && <Trophy className="w-3.5 h-3.5 text-amber-700" />}
+                            {entry.description.includes('Fair Play') && <Heart className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400/20" />}
+                            <span className="font-bold text-slate-200">{entry.patrolName}</span>
+                            <span className="text-[9px] text-slate-500 uppercase font-black tracking-tighter opacity-60">
+                              {entry.description.split(' no Jogo')[0]}
+                            </span>
                           </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Tropa Zumbi */}
-                    {item.filter(entry => ['Morcego', 'Falcão', 'Pavão', 'Águia'].includes(entry.patrolName)).length > 0 && (
-                      <div className="space-y-2">
-                        <h4 className="text-[10px] font-black text-gold/80 uppercase tracking-widest border-b border-gold/20 pb-1">Zumbi</h4>
-                        {item
-                          .filter(entry => ['Morcego', 'Falcão', 'Pavão', 'Águia'].includes(entry.patrolName))
-                          .sort((a, b) => {
-                            const getRank = (desc: string) => {
-                              if (desc.includes('1º')) return 1;
-                              if (desc.includes('2º')) return 2;
-                              if (desc.includes('3º')) return 3;
-                              if (desc.includes('Fair Play')) return 4;
-                              return 5;
-                            };
-                            return getRank(a.description) - getRank(b.description);
-                          })
-                          .map(entry => (
-                          <div key={entry.id} className="flex justify-between items-center text-xs">
-                            <div className="flex items-center gap-2">
-                              {entry.description.includes('1º') && <Trophy className="w-3.5 h-3.5 text-gold" />}
-                              {entry.description.includes('2º') && <Trophy className="w-3.5 h-3.5 text-slate-300" />}
-                              {entry.description.includes('3º') && <Trophy className="w-3.5 h-3.5 text-amber-700" />}
-                              {entry.description.includes('Fair Play') && <Heart className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400/20" />}
-                              <span className="font-bold text-slate-200">{entry.patrolName}</span>
-                              <span className="text-[9px] text-slate-500 uppercase font-black tracking-tighter opacity-60">
-                                {entry.description.split(' no Jogo')[0]}
-                              </span>
-                            </div>
-                            <div className={`font-black ${entry.xpValue >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                              +{entry.xpValue} XP
-                            </div>
+                          <div className={`font-black ${entry.xpValue >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                            +{entry.xpValue} XP
                           </div>
-                        ))}
-                      </div>
-                    )}
+                        </div>
+                      ))}
                   </div>
 
                   {chiefComment && (

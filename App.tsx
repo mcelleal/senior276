@@ -10,13 +10,13 @@ import { syncService } from './syncService';
 import html2canvas from 'html2canvas';
 
 const DEFAULT_SYNC_URL = 'https://lulubastudio.com.br/scout276/sync.php';
-const APP_VERSION = 'v1.0.7';
+const APP_VERSION = 'v1.0.0-senior';
 
 const App: React.FC = () => {
   const [patrols, setPatrols] = useState<Patrol[]>(INITIAL_PATROLS);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [dbConfig, setDbConfig] = useState(() => {
-    const saved = localStorage.getItem('scout_rpg_db_config');
+    const saved = localStorage.getItem('senior_rpg_db_config');
     return saved ? JSON.parse(saved) : {
       url: DEFAULT_SYNC_URL,
       token: ''
@@ -42,8 +42,8 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const init = async () => {
-      const savedPatrols = localStorage.getItem('scout_rpg_patrols');
-      const savedLogs = localStorage.getItem('scout_rpg_logs');
+      const savedPatrols = localStorage.getItem('senior_rpg_patrols');
+      const savedLogs = localStorage.getItem('senior_rpg_logs');
       if (savedPatrols) setPatrols(JSON.parse(savedPatrols));
       if (savedLogs) setLogs(JSON.parse(savedLogs));
       hasLoadedLocal.current = true;
@@ -59,8 +59,8 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (!hasLoadedLocal.current) return;
-    localStorage.setItem('scout_rpg_patrols', JSON.stringify(patrols));
-    localStorage.setItem('scout_rpg_logs', JSON.stringify(logs));
+    localStorage.setItem('senior_rpg_patrols', JSON.stringify(patrols));
+    localStorage.setItem('senior_rpg_logs', JSON.stringify(logs));
   }, [patrols, logs]);
 
   const validateAndSync = async (url: string, token: string) => {
@@ -72,7 +72,7 @@ const App: React.FC = () => {
         setIsSyncLocked(false);
         setSyncStatus('none');
       } else if (remoteData && remoteData.patrols) {
-        const localLogs = JSON.parse(localStorage.getItem('scout_rpg_logs') || '[]');
+        const localLogs = JSON.parse(localStorage.getItem('senior_rpg_logs') || '[]');
         const localPending = localLogs.filter((l: LogEntry) => l.unsynced);
         if (localPending.length > 0) {
           reconcileData(remoteData.patrols, remoteData.logs, localPending);
@@ -93,7 +93,7 @@ const App: React.FC = () => {
 
   const handleSaveConfig = () => {
     setDbConfig(configDraft);
-    localStorage.setItem('scout_rpg_db_config', JSON.stringify(configDraft));
+    localStorage.setItem('senior_rpg_db_config', JSON.stringify(configDraft));
     setShowConfigPanel(false);
     validateAndSync(configDraft.url, configDraft.token);
   };

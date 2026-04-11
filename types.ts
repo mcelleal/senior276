@@ -1,12 +1,9 @@
 
 export enum TroopName {
-  TARSILLA = 'Tarsilla do Amaral',
-  ZUMBI = 'Zumbi dos Palmares'
+  CATARATAS = 'Cataratas do Iguaçu'
 }
 
-export type PatrolName = 
-  | 'Leão' | 'Pantera' | 'Tigre' | 'Raposa' 
-  | 'Morcego' | 'Falcão' | 'Pavão' | 'Águia';
+export type PatrolName = 'Kaaete' | 'Kuruqui';
 
 export enum AttributeType {
   PRONTIDAO = 'Prontidão',
