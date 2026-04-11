@@ -411,10 +411,6 @@ const App: React.FC = () => {
              </div>
              <div className="space-y-6">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">URL sync.php</label>
-                  <input type="url" value={configDraft.url} onChange={e => setConfigDraft({...configDraft, url: e.target.value})} className="w-full bg-forest-dark border border-slate-700 p-3 rounded text-sm text-slate-100 outline-none focus:border-gold" />
-                </div>
-                <div className="space-y-1">
                   <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1"><Key className="w-3 h-3" /> Token de Acesso</label>
                   <input type="text" value={configDraft.token} onChange={e => setConfigDraft({...configDraft, token: e.target.value})} className="w-full bg-forest-dark border border-slate-700 p-3 rounded text-sm text-gold font-mono outline-none focus:border-gold" />
                 </div>
