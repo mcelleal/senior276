@@ -3,7 +3,7 @@ export enum TroopName {
   CATARATAS = 'Cataratas do Iguaçu'
 }
 
-export type PatrolName = 'Kaaete' | 'Kuruqui';
+export type PatrolName = "Ka'aete" | 'Katukina';
 
 export enum AttributeType {
   PRONTIDAO = 'Prontidão',

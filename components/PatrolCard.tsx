@@ -15,8 +15,8 @@ const PatrolCard: React.FC<PatrolCardProps> = ({ patrol, rank, score }) => {
 
   const getPatrolIcon = (name: PatrolName) => {
     switch (name) {
-      case 'Kaaete': return <Leaf className="w-5 h-5 text-emerald-400" />;
-      case 'Kuruqui': return <Bird className="w-5 h-5 text-sky-400" />;
+      case "Ka'aete": return <Leaf className="w-5 h-5 text-emerald-400" />;
+      case 'Katukina': return <Bird className="w-5 h-5 text-sky-400" />;
       default: return <ShieldAlert className="w-5 h-5 text-slate-500" />;
     }
   };

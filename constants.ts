@@ -5,8 +5,8 @@ export const XP_PER_LEVEL = 1000;
 
 export const INITIAL_PATROLS: Patrol[] = [
   // Cataratas do Iguaçu
-  { id: 's1', name: 'Kaaete', troop: TroopName.CATARATAS, attributes: createInitialAttributes() },
-  { id: 's2', name: 'Kuruqui', troop: TroopName.CATARATAS, attributes: createInitialAttributes() },
+  { id: 's1', name: "Ka'aete", troop: TroopName.CATARATAS, attributes: createInitialAttributes() },
+  { id: 's2', name: 'Katukina', troop: TroopName.CATARATAS, attributes: createInitialAttributes() },
 ];
 
 function createInitialAttributes() {
